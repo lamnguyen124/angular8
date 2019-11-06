@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styles: [`
-    .online {
-      color: white;
-    }
-  `]
+  styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent {
   allowNewServer = false;
   serverCreationStatus = 'No server was created!';
   serverName = '';
@@ -18,6 +14,8 @@ export class ContentComponent implements OnInit {
   serverStatus = 'offline';
   serverCreated = false;
   servers = ['Testserver', 'Testserver 2'];
+  showSecret = false;
+  log = [];
 
   constructor() {
     setTimeout(() => {
@@ -45,5 +43,10 @@ export class ContentComponent implements OnInit {
 
   getColor() {
     return this.serverStatus === 'online' ? 'green' : 'red';
+  }
+
+  onToggleDetails() {
+    this.showSecret = !this.showSecret;
+    this.log.push(this.log.length + 1);
   }
 }
